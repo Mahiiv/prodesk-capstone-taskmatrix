@@ -85,10 +85,14 @@ Figma link: https://www.figma.com/design/9TU4pEOna7J9HgVAozkdnI/TaskMatrix-Wiref
 
 ## Architecture (ERD)
 
-Coming soon.
+![TaskMatrix ERD](erd.png)
 
-Planned collections: Users, Projects, Tasks, Activities
+Collections: Users, Projects, Tasks, Activities
 
+- A user can own many projects and be a member of many projects
+- A project has many tasks
+- A task is assigned to one user
+- Every action creates an activity, which feeds the activity feed
 ---
 
 ## Other Files
