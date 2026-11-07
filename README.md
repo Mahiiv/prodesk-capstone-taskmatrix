@@ -79,7 +79,7 @@ All screens have a mobile layout too.
 
 ## UI/UX Wireframes
 
-Figma link: **ADD LINK HERE (set to "anyone with the link can view")**
+Figma link: https://www.figma.com/design/9TU4pEOna7J9HgVAozkdnI/TaskMatrix-Wireframes?node-id=0-1&t=XS1KCD1nn8T0rDJD-1
 
 ---
 
