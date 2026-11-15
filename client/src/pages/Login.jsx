@@ -12,7 +12,7 @@ function Login() {
     setMessage('');
 
     // sending email + password to the backend
-    fetch('http://localhost:5000/api/auth/login', {
+     fetch(API + '/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email, password: password })

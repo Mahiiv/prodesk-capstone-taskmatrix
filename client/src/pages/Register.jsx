@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
+    // backend url comes from the env file, changes when deployed
+  var API = import.meta.env.VITE_API_URL;
   // one state for each input box
   var [name, setName] = useState('');
   var [email, setEmail] = useState('');
@@ -14,7 +16,7 @@ function Register() {
     setMessage('');
 
     // sending the form data to my backend
-    fetch('http://localhost:5000/api/auth/register', {
+    fetch(API + '/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name, email: email, password: password })
