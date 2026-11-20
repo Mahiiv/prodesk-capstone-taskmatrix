@@ -134,3 +134,38 @@ A JWT is like a signed entry pass that the server gives after login.
 Env variables (.env, Render, Vercel) keep secrets out of GitHub.
 The Render free tier sleeps, so the first request can take around 50 seconds.
 Always check git status before committing so .env and node_modules do not go to GitHub.
+
+## Sprint 15 - Feature Complete (CRUD)
+
+Track: B (Fullstack) - Phase 1 and Phase 2 only
+
+### Prompt 1 - understanding the sprint
+**Prompt:** I pasted the Sprint 15 brief and asked for a plain language explanation before any code.
+**What AI gave:** Explained CRUD, ownership check (authorId vs userId from the JWT, 403 if not the owner), and optimistic delete in simple words.
+**What I did with it:** Decided to do Phase 1 and Phase 2 and skip the Stripe phase.
+
+### Prompt 2 - backend CRUD with ownership (Phase 1)
+**Prompt:** Asked for Phase 1 code: Task model and JWT-protected POST, GET, PUT, DELETE routes for tasks.
+**What AI gave:** `server/models/Task.js` and `server/routes/tasks.js`, with the ownership check returning 403.
+**What I did with it:** Created both files, mounted `/api/tasks` in `server.js`, and checked that my JWT uses the `id` key so `decoded.id` matches.
+
+### Prompt 3 - testing without Postman
+**Prompt:** Asked how to test the routes without installing Postman.
+**What AI gave:** PowerShell `Invoke-RestMethod` commands for login, create, read, update and delete.
+**What I did with it:** Tested all four routes. Then registered a second user and tried to delete the first user's task, and got 403 "Not your task".
+
+### Prompt 4 - React connection (Phase 2)
+**Prompt:** Asked for Phase 2: connect React to the endpoints with an optimistic delete.
+**What AI gave:** `client/src/Tasks.jsx` with a task list, add form, edit and delete.
+**What I did with it:** Imported it into my Dashboard page (`../Tasks`). Delete removes the task from the screen first, then calls the API in the background.
+
+### Prompt 5 - bugs I fixed with AI help
+- **Blank page, "No routes matched location /":** added a route that redirects `/` to `/login`.
+- **"API is not defined" in Login.jsx:** added `var API = import.meta.env.VITE_API_URL;`.
+- **git push rejected (fetch first):** ran `git pull --no-rebase`, then pushed.
+- **Vercel build failed (duplicate import):** `Route` was imported twice from react-router-dom in `App.jsx`. Removed the extra import line.
+
+### What I learned
+- Ownership check: compare the task's `authorId` with the userId inside the token. The server decides who owns it, never the client.
+- Optimistic UI: update the screen first, then tell the server, and put the task back if the server says no.
+- Vite env variables must start with `VITE_` to reach the browser.
