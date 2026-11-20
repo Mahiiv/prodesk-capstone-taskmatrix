@@ -12,6 +12,8 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth', authRoutes);
+var taskRoutes = require("./routes/tasks");
+app.use("/api/tasks", taskRoutes);
 
 app.get('/', function (req, res) {
   res.send('taskmatrix server is running');

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Tasks from "../Tasks";
 
 function Dashboard() {
   var navigate = useNavigate();
@@ -20,6 +21,7 @@ function Dashboard() {
       <p>Welcome {user ? user.name : 'guest'}</p>
       <p>Email: {user ? user.email : ''}</p>
       <button onClick={handleLogout}>Logout</button>
+      <Tasks />
     </div>
   );
 }
